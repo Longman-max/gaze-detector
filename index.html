@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Eye Tracking Gaze Detector</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Look At Either Paragraph</h1>
+            <div class="status" id="status">Loading face detection models...</div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="startBtn">Start Eye Tracking</button>
+            <button class="btn" id="calibrateBtn" disabled>Calibrate</button>
+            <button class="btn" id="stopBtn" disabled>Stop</button>
+        </div>
+
+        <div class="main-content">
+            <div class="paragraph-container">
+                <div class="paragraph left" id="paragraphA">
+                    <h2>Paragraph A</h2>
+                    <p>
+                        Gaze tracking technology has revolutionized human-computer interaction by providing insights into visual attention patterns. This sophisticated system uses computer vision algorithms to analyze eye movements and determine where a user is looking on a screen. The technology relies on infrared light reflection from the cornea and pupil to calculate gaze direction with remarkable precision.
+                    </p>
+                    <p>
+                        Modern gaze tracking systems can achieve accuracy within 0.5-1 degree of visual angle, making them suitable for various applications including user experience research, accessibility tools, and interactive media. The implementation typically involves real-time processing of facial landmarks, particularly around the eye region, to establish a coordinate system for gaze estimation.
+                    </p>
+                    <p>
+                        Machine learning models, particularly convolutional neural networks, have significantly improved the robustness and accuracy of gaze detection systems. These models can adapt to different lighting conditions, head poses, and individual variations in eye anatomy, making gaze tracking more accessible across diverse user populations.
+                    </p>
+                </div>
+
+                <div class="paragraph right" id="paragraphB">
+                    <h2>Paragraph B</h2>
+                    <p>
+                        The applications of gaze tracking extend far beyond simple cursor control, encompassing fields such as psychology, marketing research, medical diagnosis, and assistive technology. In educational settings, gaze patterns can reveal learning difficulties and attention disorders, while in marketing, they provide insights into consumer behavior and advertisement effectiveness.
+                    </p>
+                    <p>
+                        Privacy considerations play a crucial role in gaze tracking implementation. Since eye movements can reveal sensitive information about cognitive processes, emotions, and even medical conditions, robust privacy protection mechanisms are essential. Modern systems often process data locally to minimize privacy risks while maintaining functionality.
+                    </p>
+                    <p>
+                        The future of gaze tracking lies in seamless integration with augmented and virtual reality systems, creating more immersive and intuitive user experiences. As the technology becomes more miniaturized and cost-effective, we can expect to see gaze-controlled interfaces in smartphones, laptops, and even smart glasses becoming commonplace.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <video id="video" autoplay muted></video>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="debugCanvas" width="320" height="240"></canvas>
+        </div>
+
+        <div class="eye-debug" id="eyeDebug">
+            <div>Face Detected: <span id="faceStatus">No</span></div>
+            <div>Left Eye: <span id="leftEyePos">Not detected</span></div>
+            <div>Right Eye: <span id="rightEyePos">Not detected</span></div>
+            <div>Gaze Vector: <span id="gazeVector">Calculating...</span></div>
+        </div>
+
+        <div class="info-panel" id="infoPanel">
+            <div>Gaze Position: <span id="gazePos">Not tracking</span></div>
+            <div>Active Region: <span id="activeRegion">None</span></div>
+            <div>Confidence: <span id="confidence">0%</span></div>
+        </div>
+
+        <div class="gaze-indicator" id="gazeIndicator" style="display: none;"></div>
+    </div>
+
+    <div class="calibration-overlay" id="calibrationOverlay">
+        <div class="calibration-content">
+            <h2>Eye Tracking Calibration</h2>
+            <p>Look directly at each red dot that appears and click on it</p>
+            <p>Keep your head still and use only your eyes to look at the dots</p>
+            <div id="calibrationProgress"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/face-api.js/0.22.2/face-api.min.js"></script>
+    <script src="src/script.js"></script>
+</body>
+</html>
